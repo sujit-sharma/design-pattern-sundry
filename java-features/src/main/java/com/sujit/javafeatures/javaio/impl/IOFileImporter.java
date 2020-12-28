@@ -14,13 +14,13 @@ public class IOFileImporter implements FileImporter {
         List<Item> items = new ArrayList<>();
         Item item;
 
-        try(BufferedReader bur = new BufferedReader(new FileReader(inputFile))){
-            String line =  bur.readLine();
+        try(BufferedReader reader = new BufferedReader(new FileReader(inputFile))){
+            String line =  reader.readLine();
 
             while (line != null && !line.trim().equals("")){
-                item = extractItemAttributeBySplitingLineData(line);
+                item = Helper.extractItemAttributeBySplitingLineData(line);
                 items.add(item);
-                line = bur.readLine();
+                line = reader.readLine();
             }
 
         }
@@ -31,18 +31,5 @@ public class IOFileImporter implements FileImporter {
         return items;
     }
 
-    private Item extractItemAttributeBySplitingLineData(String line) {
-        Item item = new Item();
-        String[] chunks = line.split("\\s+");
-        item.setName(chunks[0]);
-        StringBuilder quantity = new StringBuilder();
-        quantity.append(chunks[1]);
-        if(chunks.length>3)
-            quantity.append(" " +chunks[2]);
-        item.setQuantity(quantity.toString());
-        String price = chunks[chunks.length-1];
-        item.setPrice(Double.parseDouble(price));
 
-        return item;
-    }
 }

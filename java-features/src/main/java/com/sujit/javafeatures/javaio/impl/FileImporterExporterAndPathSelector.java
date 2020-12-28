@@ -10,12 +10,12 @@ public class FileImporterExporterAndPathSelector extends FileDataManager {
 
     @Override
     public FileImporter getFileImporter() {
-        return new IOFileImporter();
+        return new NIOFileImporter();
     }
 
     @Override
     public FileExportor getFileExporter() {
-        return new IOFileExporter();
+        return new NIOFileExporter();
 
     }
 
