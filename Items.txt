@@ -1,0 +1,5 @@
+Momo    half    20.0
+Chicken one plate   50.00
+pizza   two 80.20
+burger  three   90.00
+Momo half 50.0
