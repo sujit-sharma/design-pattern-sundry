@@ -10,7 +10,7 @@ public class FileImporterExporterAndPathSelector extends FileDataManager {
 
     @Override
     public FileImporter getFileImporter() {
-        return new NIOFileImporter();
+        return new IOFileImporter();
     }
 
     @Override
@@ -19,7 +19,7 @@ public class FileImporterExporterAndPathSelector extends FileDataManager {
 
     }
 
-    public void prepareFiles(){
+    public static void prepareFiles(){
         File inputFile = new File("." + File.separator + "Items.txt");
         String outputFilePath = "." + File.separator + "ItemOutput";
         try {
@@ -33,8 +33,9 @@ public class FileImporterExporterAndPathSelector extends FileDataManager {
     }
 
     public static void main(String[] args) {
-        FileImporterExporterAndPathSelector fileImporterExporterAndPathSelector = new FileImporterExporterAndPathSelector();
-        fileImporterExporterAndPathSelector.prepareFiles();
+//        FileImporterExporterAndPathSelector fileImporterExporterAndPathSelector = new FileImporterExporterAndPathSelector();
+//        fileImporterExporterAndPathSelector.prepareFiles();
+        prepareFiles();
     }
 
 }

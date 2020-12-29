@@ -9,7 +9,6 @@
     <modules>
         <module>java-features</module>
         <module>assignments</module>
-        <module>1-matrix</module>
     </modules>
     <dependencies>
         <dependency>
