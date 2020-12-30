@@ -22,7 +22,6 @@ public abstract class FileDataManager {
         //prepating for writing
         chooseFileNameAndReadyForWriter(itemNameMap, outputPath);
 
-
     }
 
     //insert into set to make unique keys for map and then split based on name using stream

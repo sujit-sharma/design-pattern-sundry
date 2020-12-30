@@ -7,6 +7,12 @@ public class Item {
     private static final String CSV_LINEBREAK = "\n";
     private static final String CSV_SEPARATOR = ",";
 
+    public Item(){}
+    public Item(String name, String quantity,Double price){
+        this.name = name;
+        this.quantity = quantity;
+        this.price =price;
+    }
     public String getName() {
         return name;
     }

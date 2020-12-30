@@ -6,11 +6,11 @@ public class Helper {
 
     static public Item extractItemAttributeBySplitingLineData(String line) {
         Item item = new Item();
-        if(line != null){
-            line = line.trim();
+        line = line.trim();
+        if(line != null ){
             String[] chunks = line.split("\\s+");
-            if(chunks.length<3 ){
-                throw new HalfInformationException("Item doesn't contains full information");
+            if(chunks.length<3 || chunks.length > 4){
+                throw new IncorrectInformationInParamsException("Length of Words either less or more than expected words");
             }
             item.setName(chunks[0]);
             StringBuilder quantity = new StringBuilder();
