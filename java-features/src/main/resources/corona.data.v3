@@ -1,0 +1,10 @@
+
+countryId,positive,negative,rate,date
+
+
+10,000
+
+- insert 10,000
+- update 10,000
+- remove 10 items, then perform delete operation, 10 , 9990
+- 9990 pagination data select 50 rows onetime, order by date desc
