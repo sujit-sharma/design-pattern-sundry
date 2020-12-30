@@ -11,11 +11,13 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
+import java.util.logging.Logger;
 
 public class Reflection {
 
     public void reflect() throws Exception {
         Class<?> myLinkedHashMap = LinkedHashMap.class;
+
         System.out.println(myLinkedHashMap);
         Class<?>[] innerClassEnumAndInterfaces = myLinkedHashMap.getClasses();
         System.out.println("Inner Classes, Enums and Interfaces :: " + Arrays.toString(innerClassEnumAndInterfaces));
