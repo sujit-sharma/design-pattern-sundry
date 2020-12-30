@@ -9,6 +9,7 @@
     <modules>
         <module>java-features</module>
         <module>assignments</module>
+        <module>corona-info</module>
     </modules>
     <dependencies>
         <dependency>
