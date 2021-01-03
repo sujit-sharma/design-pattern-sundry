@@ -1,42 +1,54 @@
 package com.sujit.database;
 
 import java.sql.*;
+import java.util.Properties;
+import java.util.logging.Logger;
 
 public class DatabaseConnection {
 
-    // JDBC driver name and database URL
-    static final String JDBC_DRIVER = "org.h2.Driver";
-    static final String DB_URL = "jdbc:h2:~/test";
+    private Properties properties;
 
-    //  Database credentials
-    static final String USER = "sa";
-    static final String PASS = "";
-
-    public static void main(String[] args) {
-        {
-            try
-            {
-                Class.forName("org.h2.Driver");
-                Connection con = DriverManager.getConnection("jdbc:h2:~/test", "test", "" );
-                Statement stmt = con.createStatement();
-                //stmt.executeUpdate( "DROP TABLE table1" );
-
-                System.out.println("Generate output ");
-                while( rs.next() )
-                {
-                    String name = rs.getString("user");
-                    System.out.println( name );
-                }
-                stmt.close();
-                con.close();
-            }
-            catch( Exception e )
-            {
-                System.out.println( e.getMessage() );
-            }
-        }
+    public DatabaseConnection(Properties properties ){
+        this.properties = properties;
     }
 
+    public Connection getConnectionString() throws SQLException {
+        Connection connection = null;
 
+       try {connection = DriverManager.getConnection(properties.getProperty("db.url"), properties.getProperty("db.user"), properties.getProperty("db.password"));
+
+       }
+       catch (SQLException sqlException){
+           connection.close();
+           Logger.getGlobal().severe("Error Occur While Connecting to Database......");
+       }
+       return connection;
+    }
+
+    public Statement getStatementString() throws SQLException{
+        Statement statement = null;
+        Connection connection = null;
+        try {
+            connection = this.getConnectionString();
+            statement =  connection.createStatement();
+        }
+
+        catch (SQLException sqlException){
+            statement.close();
+            Logger.getGlobal().severe("Error Occur While Connecting Database......");
+        }
+        return statement;
+    }
+
+    public void closeConnection(Connection connection){
+        if(connection == null)
+            return;
+        try {
+            connection.close();
+        }
+        catch (SQLException sqlException ){
+            sqlException.printStackTrace();
+        }
+    }
 
 }

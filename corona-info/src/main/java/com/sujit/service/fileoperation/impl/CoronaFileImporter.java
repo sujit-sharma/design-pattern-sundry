@@ -7,6 +7,7 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.sql.Date;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -42,10 +43,7 @@ public class CoronaFileImporter implements FileImporter {
         coronaPOJO.setPositive(Integer.parseInt(tokenizer.nextToken()));
         coronaPOJO.setNegative(Integer.parseInt(tokenizer.nextToken()));
         coronaPOJO.setRate(Float.parseFloat(tokenizer.nextToken()));
-        StringTokenizer dateTokens  = new StringTokenizer(tokenizer.nextToken(), "-");
-        coronaPOJO.setDate(LocalDate.of(Integer.parseInt("2020"),11,8));
-        coronaPOJO.setDate(LocalDate.of(Integer.parseInt(dateTokens.nextToken()),Integer.parseInt(dateTokens.nextToken()),
-                Integer.parseInt(dateTokens.nextToken())));
+        coronaPOJO.setDate(Date.valueOf(tokenizer.nextToken()));
 
         return coronaPOJO;
     }

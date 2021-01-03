@@ -1,6 +1,6 @@
 package com.sujit.service;
 
-import java.time.LocalDate;
+import java.sql.Date;
 
 public class CoronaPOJO {
 
@@ -8,7 +8,7 @@ public class CoronaPOJO {
     private Integer positive;
     private Integer negative;
     private Float rate;
-    private LocalDate date;
+    private Date date;
 
     private static final String CSV_LINEBREAK = "\n";
     private static final String CSV_SEPARATOR = ",";
@@ -45,11 +45,11 @@ public class CoronaPOJO {
         this.rate = rate;
     }
 
-    public LocalDate getDate() {
+    public Date getDate() {
         return date;
     }
 
-    public void setDate(LocalDate date) {
+    public void setDate(Date date) {
         this.date = date;
     }
 
