@@ -13,6 +13,16 @@ public class CoronaPOJO {
     private static final String CSV_LINEBREAK = "\n";
     private static final String CSV_SEPARATOR = ",";
 
+    public CoronaPOJO() {}
+
+    public CoronaPOJO(Integer countryID, Integer positive, Integer negative, Float rate, Date date) {
+        this.countryID = countryID;
+        this.positive = positive;
+        this.negative = negative;
+        this.rate = rate;
+        this.date = date;
+    }
+
     public int getCountryID() {
         return countryID;
     }

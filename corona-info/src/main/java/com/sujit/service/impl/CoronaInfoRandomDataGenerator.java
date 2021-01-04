@@ -37,7 +37,7 @@ public class CoronaInfoRandomDataGenerator implements RandomDataGenetator {
             coronaPOJO.setPositive(random.nextInt(99999999));
             coronaPOJO.setNegative( random.nextInt(99999999));
             coronaPOJO.setRate(random.nextFloat() * random.nextInt(9999999));
-            LocalDate someDate  = LocalDate.now().minusDays(new Random().nextInt(355));
+            LocalDate someDate  = LocalDate.now().minusDays(new Random().nextInt(360) + 5);
             coronaPOJO.setDate(Date.valueOf(someDate));
 
             coronaInfoList.add(coronaPOJO);

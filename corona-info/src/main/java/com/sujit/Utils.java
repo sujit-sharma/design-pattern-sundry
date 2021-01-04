@@ -20,6 +20,5 @@ public class Utils {
             ex.printStackTrace();
         }
         return properties;
-
     }
 }

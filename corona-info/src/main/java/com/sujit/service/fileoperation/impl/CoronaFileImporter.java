@@ -16,7 +16,7 @@ import java.util.StringTokenizer;
 public class CoronaFileImporter implements FileImporter {
     @Override
     public List<CoronaPOJO> readFile(File fileName) {
-        List<CoronaPOJO> listOfData  = new ArrayList<>();
+        List<CoronaPOJO> listOfData  = new ArrayList<>(10000);
         CoronaPOJO data;
 
         try(BufferedReader reader = new BufferedReader(new FileReader(fileName))){
