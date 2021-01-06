@@ -12,14 +12,13 @@ public class DatabaseConnection {
         this.properties = properties;
     }
 
-    public Connection getConnectionString() throws SQLException {
+    public Connection getConnectionString() {
         Connection connection = null;
 
-       try {connection = DriverManager.getConnection(properties.getProperty("db.url"), properties.getProperty("db.user"), properties.getProperty("db.password"));
-
+       try { connection = DriverManager.getConnection(properties.getProperty("db.url"), properties.getProperty("db.user"), properties.getProperty("db.password"));
        }
        catch (SQLException sqlException){
-           connection.close();
+           closeConnection(connection);
            Logger.getGlobal().severe("Error Occur While Connecting to Database......");
        }
        return connection;
@@ -35,6 +34,7 @@ public class DatabaseConnection {
 
         catch (SQLException sqlException){
             statement.close();
+            closeConnection(connection);
             Logger.getGlobal().severe("Error Occur While Connecting Database......");
         }
         return statement;
@@ -49,6 +49,31 @@ public class DatabaseConnection {
         catch (SQLException sqlException ){
             sqlException.printStackTrace();
         }
+    }
+    public void setAutoCommit(Connection connection, boolean value){
+        if(connection == null)
+            return;
+        try {
+            connection.setAutoCommit(value);
+        }
+        catch (SQLException sqlException) {
+            sqlException.printStackTrace();
+            closeConnection(connection);
+        }
+
+    }
+
+    public void commit(Connection connection) {
+        if (connection == null)
+            return;
+        try {
+            connection.commit();
+        }
+        catch (SQLException sqlException) {
+            sqlException.printStackTrace();
+            closeConnection(connection);
+        }
+
     }
 
 }

@@ -3,20 +3,22 @@ package com.sujit.database;
 import com.sujit.Utils;
 import com.sujit.service.CoronaPOJO;
 
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Properties;
 import java.util.logging.Logger;
 
 public class CoronaInfoH2Impl implements CoronaInfoDAO {
 
     DatabaseConnection connection = null;
+    Statement statement = null;
+    PreparedStatement preparedStatement = null;
 
     public CoronaInfoH2Impl(){
         this.connection = new DatabaseConnection(Utils.propertiesLoader());
     }
+
     public void createTable(){
         String createTableSQL = "CREATE TABLE IF NOT EXISTS COVID_INFO_2020" +
                 "(info_Id INTEGER auto_increment," +
@@ -32,16 +34,17 @@ public class CoronaInfoH2Impl implements CoronaInfoDAO {
             sqlException.printStackTrace();
         }
     }
+
     @Override
     public void insert(CoronaPOJO coronaPOJO ) {
         String SQL = "INSERT INTO covid_info_2020 (countryID, positive, negative, rate, testedDate)" +
                 "values(?,?,?,?,?)";
         try {
-            PreparedStatement preparedStatement = connection.getConnectionString().prepareStatement(SQL);
+            preparedStatement = connection.getConnectionString().prepareStatement(SQL);
             preparedStatement.setInt(1, coronaPOJO.getCountryID());
             preparedStatement.setInt(2, coronaPOJO.getPositive());
             preparedStatement.setInt(3, coronaPOJO.getNegative());
-            preparedStatement.setDouble(4, coronaPOJO.getRate());
+            preparedStatement.setFloat(4, coronaPOJO.getRate());
             preparedStatement.setDate(5, coronaPOJO.getDate());
 
             preparedStatement.executeUpdate();
@@ -51,6 +54,31 @@ public class CoronaInfoH2Impl implements CoronaInfoDAO {
             Logger.getGlobal().severe("Error occurs while creating prepared statement");
         }
     }
+
+    @Override
+    public void insert(List<CoronaPOJO> coronaPOJOList) {
+        String SQL = "INSERT INTO covid_info_2020 (countryID, positive, negative, rate, testedDate)" +
+                "values(?,?,?,?,?)";
+        try {
+            preparedStatement = connection.getConnectionString().prepareStatement(SQL);
+            for (CoronaPOJO coronaInfo: coronaPOJOList ) {
+                preparedStatement.setInt(1, coronaInfo.getCountryID());
+                preparedStatement.setInt(2,coronaInfo.getPositive());
+                preparedStatement.setInt(3, coronaInfo.getNegative());
+                preparedStatement.setFloat(3, coronaInfo.getRate());
+                preparedStatement.setDate(5,coronaInfo.getDate());
+                preparedStatement.addBatch();
+            }
+            preparedStatement.executeBatch();
+
+        }
+        catch (SQLException sqlException ){
+            sqlException.printStackTrace();
+        }
+
+
+    }
+
     @Override
     public List<CoronaPOJO> getAllPaginatedCovidInfo(int limit){
         List<CoronaPOJO> result  = new ArrayList<>(10000);

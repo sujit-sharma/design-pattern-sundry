@@ -15,6 +15,7 @@
         <module>java-features</module>
         <module>assignments</module>
         <module>corona-info</module>
+        <module>design-pattern</module>
     </modules>
     <dependencies>
         <dependency>
