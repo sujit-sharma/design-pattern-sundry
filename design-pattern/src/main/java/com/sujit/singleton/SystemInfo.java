@@ -1,15 +1,29 @@
 package com.sujit.singleton;
 
-public class SystemInfo {
+import java.io.Serializable;
 
-    private static  SystemInfo systemInfo = null;
+public class SystemInfo implements Serializable {
 
-    private SystemInfo(){}
+    private static volatile  SystemInfo systemInfo = null;
 
-    public synchronized static SystemInfo getInstance(){
+    private SystemInfo(){
+        if(systemInfo != null){
+            throw new RuntimeException("This Singleton Class is already initialized. Use getInstance Method instead");
+        }
+    }
+
+    public static SystemInfo getInstance(){
         if(systemInfo == null)
-            systemInfo = new SystemInfo();
+        {
+            synchronized (SystemInfo.class){
+                if (systemInfo == null ) systemInfo = new SystemInfo();
+            }
+        }
         return systemInfo;
+    }
+
+    protected SystemInfo readResolve() {
+        return getInstance();
     }
 
 
