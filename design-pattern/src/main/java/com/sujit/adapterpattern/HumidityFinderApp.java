@@ -2,7 +2,7 @@ package com.sujit.adapterpattern;
 
 import java.util.logging.Logger;
 
-public class HimiityFinderApp {
+public class HumidityFinderApp {
 
     public static void main(String[] args) {
         WeatherCalculator weatherCalculator = new WeatherAdapter(new Weather());

@@ -6,7 +6,7 @@ public class SystemInfo {
 
     private SystemInfo(){}
 
-    public static SystemInfo getInstance(){
+    public synchronized static SystemInfo getInstance(){
         if(systemInfo == null)
             systemInfo = new SystemInfo();
         return systemInfo;
