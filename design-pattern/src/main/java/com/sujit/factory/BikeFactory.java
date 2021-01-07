@@ -1,15 +1,15 @@
 package com.sujit.factory;
 
 public class BikeFactory {
-    private Bike bike = null;
+    private Bike bike;
 
     public Bike createBike(String bikeType) {
 
         if(bikeType.equalsIgnoreCase("Pulsar")) {
-            bike = new PulsarBike();
+            return new PulsarBike();
         }
         else if(bikeType.equalsIgnoreCase("Apache")){
-            bike = new ApacheBike();
+           return new ApacheBike();
         }
         return bike;
     }
