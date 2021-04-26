@@ -35,13 +35,13 @@ class SystemInfoTest {
 
 
     @Test
-    public void whenCalledPrivateConstructorShouldThrowRuntimeException() {
+    public void whenCalledPrivateConstructorShouldSingletonRuleViolationException() {
        SystemInfo instance = SystemInfo.getInstance();
             Throwable exception = assertThrows(SingletonRuleViolationException.class, () -> {
                 Constructor<SystemInfo> cons = SystemInfo.class.getDeclaredConstructor();
                 cons.setAccessible(true);
                 try {
-                    cons.newInstance();
+                    cons.newInstance(); 
                 }catch (InvocationTargetException ite ){
                     throw (Exception) ite.getCause();
                 }

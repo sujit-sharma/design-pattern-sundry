@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Properties;
 import java.util.logging.Logger;
 
-public class CoronaInfoH2Impl implements CoronaInfoDAO {
+public class  CoronaInfoH2Impl implements CoronaInfoDAO {
 
     DatabaseConnection connection = null;
     Statement statement = null;

@@ -4,13 +4,13 @@ import java.io.Serializable;
 
 public class SystemInfo implements Serializable {
 
-    private static volatile  SystemInfo systemInfo;
+    private static volatile SystemInfo systemInfo;
 
     private SystemInfo() {
         if(systemInfo != null){
             throw new SingletonRuleViolationException("This Singleton Class is already initialized. Use getInstance Method instead");
         }
-        }
+    }
 
 
     public static SystemInfo getInstance(){

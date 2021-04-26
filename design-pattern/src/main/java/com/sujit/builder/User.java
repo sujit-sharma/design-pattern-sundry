@@ -6,13 +6,13 @@ public class User {
     private String email;
     private int age;
 
-    //public User(){}
-    private User(UserBuilder userBuilder){
+    private User(UserBuilder userBuilder) {
         this.name = userBuilder.name;
         this.email = userBuilder.email;
         this.age = userBuilder.age;
 
     }
+
     public String toString(){
         return "USER  " + this.name +"  " + this.email + "  " + this.age;
     }

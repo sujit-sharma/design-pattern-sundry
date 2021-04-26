@@ -17,6 +17,7 @@ public class DatabaseConnection {
 
        try { connection = DriverManager.getConnection(properties.getProperty("db.url"), properties.getProperty("db.user"), properties.getProperty("db.password"));
        }
+
        catch (SQLException sqlException){
            closeConnection(connection);
            Logger.getGlobal().severe("Error Occur While Connecting to Database......");

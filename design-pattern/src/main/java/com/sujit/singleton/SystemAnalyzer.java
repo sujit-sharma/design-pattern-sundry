@@ -1,5 +1,7 @@
 package com.sujit.singleton;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Logger;
 
 public class SystemAnalyzer {
@@ -33,5 +35,6 @@ public class SystemAnalyzer {
        SystemAnalyzer analyzer = new SystemAnalyzer();
        analyzer.analyzeMemoryInfo();
        analyzer.analyzeCPUs();
+
     }
 }

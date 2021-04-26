@@ -16,6 +16,7 @@
         <module>assignments</module>
         <module>corona-info</module>
         <module>design-pattern</module>
+        <module>multithreading</module>
     </modules>
     <dependencies>
         <dependency>
